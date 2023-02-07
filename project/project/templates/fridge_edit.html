@@ -1,0 +1,89 @@
+{% extends "login_base.html" %}
+
+{% block title %}
+    NEW Request
+{% endblock %}
+
+{% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+function addInputArea1() {
+    // 追加する要素の作成
+    var divElement1 = document.createElement("div");
+    divElement1.innerHTML = '<input class="form-control" name="material" placeholder="材料" type="text">' + '<input class="form-control" name="amount" placeholder="分量" type="text">';
+    divElement1.className = 'input-wrapper1';
+
+    // 要素の追加
+    var inputArea1 = document.getElementById("inputArea1");
+    inputArea1.appendChild(divElement1);
+}
+function deleteInputArea1() {
+    // div.input-wrapper を取得
+    var inputDivs1 = document.getElementsByClassName('input-wrapper1');
+
+    // 最後の div.input-wrapper を削除
+    var inputArea1 = document.getElementById("inputArea1");
+    inputArea1.removeChild(inputDivs1[inputDivs1.length-1]);
+}
+function addInputArea2() {
+    // 追加する要素の作成
+    var divElement2 = document.createElement("div");
+    divElement2.innerHTML = '<input type="text" class="form-control" name=step placeholder="手順">';
+    divElement2.className = 'input-wrapper2';
+
+    // 要素の追加
+    var inputArea2 = document.getElementById("inputArea2");
+    inputArea2.appendChild(divElement2);
+}
+function deleteInputArea2() {
+    // div.input-wrapper を取得
+    var inputDivs2 = document.getElementsByClassName('input-wrapper2');
+
+    // 最後の div.input-wrapper を削除
+    var inputArea2 = document.getElementById("inputArea2");
+    inputArea2.removeChild(inputDivs2[inputDivs2.length-1]);
+}
+
+</script>
+{% endblock %}
+
+{% block main %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li　style="list-style: none;">{{ message }}</li><br>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+
+
+    <form action="/fridge_edit/{{fridge_id}}" method="post">
+
+            食材・量
+                    <div class="form-group"><!--材料名-->
+                        <input class="form-control" name="foodstaff" value="{{foodstaff[0]['foodstaff']}}" type="text"><input class="form-control" name="amount" value="{{amount[0]['amount']}}" type="text">
+                    </div>
+
+        <div class="form-group"><!--分量-->
+            作成者{{create_user}}
+        </div>
+
+        <div class="form-group">
+            <div class="select_wrap">
+            送信相手<select name="lists" required>
+            <option value="{{fridge_class[0]['fridge_class']}}">{{fridge_class[0]['fridge_class']}}</option>
+            <option value="冷蔵室">冷蔵室</option>
+            <option value="冷凍室">冷凍室</option>
+            <option value="野菜室">野菜室</option>
+            </select>
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary" type="submit">食材編集</button>
+    </form>
+
+{% endblock %}

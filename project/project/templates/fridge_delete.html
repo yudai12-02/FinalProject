@@ -1,0 +1,12 @@
+{% extends "login_base.html" %}
+{% block main %}
+<title>食材削除</title>
+
+    <h1 class="text-white bg-dark">削除</h1>
+
+        <form action="/fridge_delete/{{ id }}" method="post">
+            <p>「{{ foodstaff }}」を削除しますか？</p>
+            <button class="btn btn-primary" type="submit">削除</button>
+        </form>
+
+{% endblock %}

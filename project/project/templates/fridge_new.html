@@ -1,0 +1,52 @@
+{% extends "login_base.html" %}
+
+{% block title %}
+    NEW Request
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block main %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li　style="list-style: none;">{{ message }}</li><br>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+
+
+    <form action="/fridge_new" method="post">
+
+            食材・量
+
+
+                    <div class="form-group"><!--材料名-->
+                        <input class="form-control" name="foodstaff" placeholder="食材名を入力してください" type="text"><input class="form-control" name="amount" placeholder="分量" type="text">
+                    </div>
+
+        <div class="form-group"><!--分量-->
+            作成者{{create_user}}
+        </div>
+
+        <div class="form-group">
+            <div class="select_wrap">
+            分類<select name="lists" required>
+            <option value="分類"></option>
+            <option value="冷蔵室">冷蔵室</option>
+            <option value="冷凍室">冷凍室</option>
+            <option value="野菜室">野菜室</option>
+            </select>
+            </div>
+        </div>
+
+
+        <button class="btn btn-primary" type="submit">食材登録</button>
+    </form>
+
+{% endblock %}

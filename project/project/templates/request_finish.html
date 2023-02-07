@@ -1,0 +1,12 @@
+{% extends "login_base.html" %}
+{% block main %}
+<title>リクエスト完了</title>
+
+    <h1 class="text-white bg-dark">完了</h1>
+
+        <form action="/request_finish/{{ id }}" method="post">
+            <p>リクエスト「{{ request_title[0]['title'] }}」を完了しますか？</p>
+            <button class="btn btn-primary" type="submit">完了</button>
+        </form>
+
+{% endblock %}

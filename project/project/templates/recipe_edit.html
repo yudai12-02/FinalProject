@@ -1,0 +1,106 @@
+{% extends "login_base.html" %}
+
+{% block title %}
+    NEW Request
+{% endblock %}
+
+{% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+function addInputArea1() {
+    // 追加する要素の作成
+    var divElement1 = document.createElement("div");
+    divElement1.innerHTML = '<input class="form-control" name="material" placeholder="材料" type="text">' + '<input class="form-control" name="amount" placeholder="分量" type="text">';
+    divElement1.className = 'input-wrapper1';
+
+    // 要素の追加
+    var inputArea1 = document.getElementById("inputArea1");
+    inputArea1.appendChild(divElement1);
+}
+function deleteInputArea1() {
+    // div.input-wrapper を取得
+    var inputDivs1 = document.getElementsByClassName('input-wrapper1');
+
+    // 最後の div.input-wrapper を削除
+    var inputArea1 = document.getElementById("inputArea1");
+    inputArea1.removeChild(inputDivs1[inputDivs1.length-1]);
+}
+function addInputArea2() {
+    // 追加する要素の作成
+    var divElement2 = document.createElement("div");
+    divElement2.innerHTML = '<input type="text" class="form-control" name="step" placeholder="手順">';
+    divElement2.className = 'input-wrapper2';
+
+    // 要素の追加
+    var inputArea2 = document.getElementById("inputArea2");
+    inputArea2.appendChild(divElement2);
+}
+function deleteInputArea2() {
+    // div.input-wrapper を取得
+    var inputDivs2 = document.getElementsByClassName('input-wrapper2');
+
+    // 最後の div.input-wrapper を削除
+    var inputArea2 = document.getElementById("inputArea2");
+    inputArea2.removeChild(inputDivs2[inputDivs2.length-1]);
+}
+
+</script>
+{% endblock %}
+
+{% block main %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li　style="list-style: none;">{{ message }}</li><br>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="/recipe_edit/{{recipe_id}}" method="post">
+        <div class="form-group"><!--料理名-->
+            料理名<input class="form-control" name="title" value="{{recipe_title[0]['title']}}" type="text">
+        </div>
+
+
+            材料名・分量
+                <input type="button" value="＋" id="add-button" onclick="addInputArea1()">
+                <input type="button" value="-" id="delete-button" onclick="deleteInputArea1()">
+
+                    <div id="inputArea1">
+                        {% if material_count == "0" %}
+                            <div class="form-group">
+                                <input class="form-control" name="material" placeholder="材料" type="text"><input class="form-control" name="amount" placeholder="分量" type="text">
+                            </div>
+                        {% endif %}
+                    {% for n in range(1, material_count) %}
+                        <div class="form-group"><!--材料名-->
+                            <input class="form-control" name="material" placeholder="材料" value="{{recipe_materials[n]['material']}}" type="text"><input class="form-control" name="amount" placeholder="分量" value="{{recipe_amounts[n]['amount']}}" type="text">
+                        </div>
+                    {% endfor %}
+                </div>
+        <div class="form-group">
+            作成者{{create_user}}
+        </div>
+        手順
+        <!--手順-->
+            <input type="button" value="＋" id="add-button" onclick="addInputArea2()">
+            <input type="button" value="-" id="delete-button" onclick="deleteInputArea2()">
+            <div id="inputArea2">
+                {% for n in range(step_count) %}
+                <div id="form-group">
+                    <input type="text" class="form-control" name="step" value="{{recipe_steps[n]['step_text']}}">
+                </div>
+                {% endfor %}
+            </div>
+
+        <div class="form-group"><!--料理名-->
+            コメント<input class="form-control" name="comment" value="{{recipe_comment[0]['comment']}}" type="text">
+        </div>
+
+
+        <button class="btn btn-primary" type="submit">レシピ編集</button>
+    </form>
+
+{% endblock %}

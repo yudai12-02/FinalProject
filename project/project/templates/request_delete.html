@@ -1,0 +1,12 @@
+{% extends "login_base.html" %}
+{% block main %}
+<title>リクエスト削除</title>
+
+    <h1 class="text-white bg-dark">削除</h1>
+
+        <form action="/request_delete/{{ id }}" method="post">
+            <p>リクエスト「{{ request_title[0]['title'] }}」を削除しますか？</p>
+            <button class="btn btn-primary" type="submit">削除</button>
+        </form>
+
+{% endblock %}

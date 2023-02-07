@@ -1,0 +1,66 @@
+
+{% extends "login_base.html" %}
+{% block main %}
+    <h2>フレンド一覧</h2>
+    <a href="/search" class="btn-anime"><span>ユーザー検索</span></a>
+    <h3>フレンド</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>username</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for fuser1 in fusers1 %}
+            <tr>
+                <td> {{ fuser1["receive_user"] }}</td>
+                <td><a href="/friend_recipe_all/{{fuser1["receive_user"]}}"><button>レシピ</button></a></td>
+            </tr>
+            {% endfor %}
+            {% for fuser2 in fusers2 %}
+            <tr>
+                <td> {{ fuser2["send_user"] }}</td>
+                <td><a href="/friend_recipe_all/{{ fuser2["send_user"] }}"><button>レシピ</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <h3>申請</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>username</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for send_user in send_users %}
+                <tr>
+                    <td>{{ send_user['receive_user'] }}</td>
+                    <td><a href="/apply_delete/{{send_user['id']}}"><button>取り消し</button></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>来ている申請</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>username</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for receive_user in receive_users %}
+                <tr>
+                    <td> {{ receive_user["send_user"] }}</td>
+                    <td><a href="apply_ok/{{ receive_user['id'] }}"><button>承認</button></a></td>
+                    <td><a href="apply_no/{{ receive_user['id'] }}"><button>拒否</button></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<!--ここまで-->
+{% endblock %}

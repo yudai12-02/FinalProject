@@ -1,0 +1,42 @@
+
+{% extends "login_base.html" %}
+{% block main %}
+<h1>ユーザー検索</h1>
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li　style="list-style: none;">{{ message }}</li><br>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form action="/search" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="id" placeholder="id" type="int">
+        </div>
+        <button class="btn-anime" type="submit"><span>Search</span></button>
+    </form>
+    <h2>検索結果</h2>
+
+    <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ユーザー名</th>
+                    <th>申請</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for search_user in search_users %}
+                <tr>
+                    <td> {{ search_user.name }}</td>
+                    <td><a href="/apply/{{ search_user.id }}"><button>申請</button></a></td><!--url_for('apply', id=search_user.id)  -->
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+{% endblock %}

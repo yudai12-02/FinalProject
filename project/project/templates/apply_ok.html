@@ -1,0 +1,12 @@
+{% extends "login_base.html" %}
+{% block main %}
+<title>申請承認</title>
+
+    <h1 class="text-white bg-dark">申請</h1>
+
+        <form action="/apply_ok/{{ id }}" method="post">
+            <p>{{ apply_user[0]['send_user'] }}さんの友達申請を承認しますか？</p>
+            <button class="btn btn-primary" type="submit">承認</button>
+        </form>
+
+{% endblock %}

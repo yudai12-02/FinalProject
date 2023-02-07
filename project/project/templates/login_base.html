@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% block head %}
+    {% endblock %}
+    <title>Recookest</title>
+</head>
+
+<body>
+    <header>
+            <h1><a href="/home" class="logo">Recookest</a></h1>
+
+            <nav>
+                <ul>
+                    <li class="logout"><a href="/logout">ログアウト</a></li>
+                    <li class="home"><a href="/home">ホーム</a></li>
+                    <li class="user"><a href="/user">ユーザー</a></li>
+                    <li class="recipe"><a href="/my/recipe_all">レシピ一覧</a></li>
+                    <li class="request"><a href="/cook_request">リクエスト</a></li>
+                    <li class="fridge"><a href="/fridge_all">冷蔵庫管理</a></li>
+                </ul>
+            </nav>
+    </header>
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+</body>
+
+
+</html>

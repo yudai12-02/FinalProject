@@ -1,0 +1,35 @@
+{% extends "login_base.html" %}
+{% block main %}
+
+<h2>レシピ詳細</h2>
+
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li　style="list-style: none;">{{ message }}</li><br>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <h3>料理名</h3>
+        {{recipe_title[0]["title"]}}
+    <h3>材料</h3>
+    {% for n in range(material_count) %}
+        {{recipe_materials[n]["material"]}}:{{recipe_materials[n]["amount"]}}<br>
+    {% endfor %}
+    <h3>手順</h3>
+    {% for n in range(step_count) %}
+        {{recipe_steps[n]["step_count"]}}. {{recipe_steps[n]["step_text"]}}<br>
+    {% endfor %}
+    <h3>作成者</h3>
+        {{recipe_create_user}}
+    <h3>作成日</h3>
+        {{recipe_update_date[0]["update_date"]}}
+    <h3>コメント</h3>
+        {{recipe_comment[0]["comment"]}}
+    {% if user == recipe_create_user %}
+        <a href="/recipe_delete/{{recipe_id}}"><button>削除</button></a>
+    {% endif %}
+
+{% endblock %}

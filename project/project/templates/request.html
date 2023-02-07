@@ -1,0 +1,68 @@
+{% extends "login_base.html" %}
+
+{% block title %}
+    Request
+{% endblock %}
+
+{% block main %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li　style="list-style: none;">{{ message }}</li><br>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+
+   <!--自分の作ったリクエストを一覧表示編集ボタンから編集-->
+   <h2>作成したリクエスト</h2>
+   <a href="/request_new" class="btn-anime"><span>新規リクエスト作成</span></a>
+   <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>detail</th>
+                <th>type</th>
+                <th>相手</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for request in requests %}
+            <tr>
+                <td> {{ request["title"] }}</td>
+                <td> {{ request["detail"] }}</td>
+                <td> {{ request["type"] }} </td>
+                <td> {{ request["receive_user"] }} </td>
+                <td> <a href="/request_edit/{{ request.id }}"><button>編集</button></a></td>
+                <td> <a href="/request_delete/{{ request.id }}"><button>削除</button></a> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<h2>届いているリクエスト</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>detail</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for receive_request in receve_requests %}
+            <tr>
+                <td> {{ receive_request["title"] }}</td>
+                <td> {{ receive_request["detail"] }}</td>
+                <td> <a href="/cook_request_finish/{{ receive_request.id }}" class="btn-anime">完了</a> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

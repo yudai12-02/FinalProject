@@ -1,0 +1,51 @@
+{% extends "login_base.html" %}
+
+{% block title %}
+    ALL_fridge
+{% endblock %}
+
+{% block main %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li　style="list-style: none;">{{ message }}</li><br>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+<a href="/fridge_new" class="btn-anime"><span>食材登録</span></a>
+<h2>冷蔵庫</h2>
+<table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>食材</th>
+                    <th>量</th>
+                    <th>分類</th>
+                    <th>登録日</th>
+                    <th>編集</th>
+                    <th>削除</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for n in range(fridge_count) %}
+                <tr>
+                    <td> {{ foodstaff[n]["foodstaff"] }}</td>
+                    <td> {{ amount[n]["amount"] }}</td>
+                    <td> {{ fridge_class[n]["fridge_class"] }}</td>
+                    <td> {{update_date[n]["update_date"]}}</td>
+                    <td><button><a href="/fridge_edit/{{fridge_id[n]['id']}}">編集</a></button></td>
+                    <td><button><a href="/fridge_delete/{{fridge_id[n]['id']}}">削除</a></button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+{% endblock %}
+
+
+
+

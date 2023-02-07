@@ -1,0 +1,12 @@
+{% extends "login_base.html" %}
+{% block main %}
+<title>申請削除</title>
+
+    <h1 class="text-white bg-dark">削除</h1>
+
+        <form action="/apply_delete/{{ id }}" method="post">
+            <p>{{ apply_user[0]['receive_user'] }}さんへの友達申請を削除しますか？</p>
+            <button class="btn btn-primary" type="submit">削除</button>
+        </form>
+
+{% endblock %}

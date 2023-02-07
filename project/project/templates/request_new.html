@@ -1,0 +1,60 @@
+{% extends "login_base.html" %}
+
+{% block title %}
+    NEW Request
+{% endblock %}
+
+{% block main %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li　style="list-style: none;">{{ message }}</li><br>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {{check_name}}
+
+    {{title}}
+    {{detail}}
+    {{receive_user}}
+    {{type}}
+
+
+    <form action="/request_new" method="post">
+        <div class="form-group">
+            タイトル<input autocomplete="off" autofocus class="form-control" name="title" placeholder="タイトルを入力してください" type="text">
+        </div>
+        <div class="form-group">
+            詳細　　<input autocomplete="off" autofocus class="form-control" name="detail" placeholder="詳細を入力してください" type="text">
+        </div>
+        <div class="form-group">
+        </div>
+        <div class="form-group">
+            タイプ　<input autocomplete="off" autofocus class="form-control" name="type" placeholder="リクエストorメモ" type="text">
+        </div>
+        <div class="form-group">
+            <div class="select_wrap">
+            送信相手<select name="lists" required>
+            <option value="" disabled>選択してください</option>
+            {% for friend1 in friends1 %}
+            <option value="{{ friend1.receive_user }}">{{ friend1.receive_user }}</option>
+            {% endfor %}
+
+            {% for friend2 in friends2 %}
+            <option value="{{ friend2.sen_user }}">{{ friend2.receive_user }}</option>
+            {% endfor %}
+            <option value="{{ user[0]['name'] }}">{{ user[0]['name'] }}</option>
+            </select>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">作成</button>
+    </form>
+
+{% endblock %}
+
+
+
+

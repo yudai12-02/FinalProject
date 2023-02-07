@@ -1,0 +1,145 @@
+/*背景*/
+body {
+  background-color: #E7DECD;
+}
+
+
+/*ロゴ*/
+.logo {
+  position: relative;
+  padding: 0.25em 1em;
+  border-top: solid 2px black;
+  border-bottom: solid 2px black;
+  border-color: #A4CDB8;
+  color: #6B493D;
+
+}
+.logo:before, .logo:after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  width: 2px;
+  height: -webkit-calc(100% + 14px);
+  height: calc(100% + 14px);
+  background-color: #A4CDB8;
+}
+.logo:before {
+  left: 7px;
+}
+.logo:after {
+  right: 7px;
+}
+
+/*メニュー*/
+nav ul{
+display: table;
+margin: 0 auto;
+padding: 0 ;
+width: 80%;
+text-align: center;
+}
+nav li{
+display: table-cell;
+min-width: 50px;
+}
+nav a{
+display: block;
+width: 100%;
+text-decoration: none;
+color: #555;
+padding-bottom: 5px;
+}
+
+nav li:hover{
+color: #E7DA66;
+border-bottom: 3px solid #9ec34b;
+}
+table{
+
+    margin-right:auto;
+    margin-left: auto;
+}
+
+a{
+    text-decoration: none;
+}
+/*ボタン*/
+.btn-anime {
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  background-color: #9ec34b;
+  border: 2px solid #9ec34b;
+  font-size: 16px;
+  color: #9ec34b;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.btn-anime span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-anime::before,
+.btn-anime::after {
+  content: "";
+  display: block;
+  background-color: #FFF;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: .2s;
+}
+.btn-anime::before {
+  left: 0;
+}
+.btn-anime::after {
+  right: 0;
+}
+
+.btn-anime:hover:before,
+.btn-anime:hover:after {
+  width: 0;
+  background-color: #FFF;
+}
+
+.btn-anime:hover {
+  color: #FFF;
+}
+
+button{
+  border-color: #9ec34b;
+  border-radius: 4px;
+}
+
+main .form-control
+{
+    /* Center form controls */
+    display: inline-block;
+
+    /* Override Bootstrap's 100% width for form controls */
+
+}
+
+main
+{
+    /* Center contents */
+    position: absolute;
+    top: 150px;
+    right: 400px;
+    bottom:auto;
+    left: 250px;
+    text-align: center;
+}
+p{
+    text-align: left;
+}
+
+.center{
+    text-align: center;
+}

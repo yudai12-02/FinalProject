@@ -1,0 +1,48 @@
+{% extends "login_base.html" %}
+
+{% block title %}
+    NEW Request
+{% endblock %}
+
+{% block main %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li　style="list-style: none;">{{ message }}</li><br>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+<h2>{{user}}さんのレシピ</h2>
+    {% if user == login_user %}
+        <a href="/recipe_new" class="btn-anime"><span>新規レシピ作成</span></a>
+    {% endif %}
+
+<table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>title</th>
+                    <th>create_date</th>
+                    <th>詳細</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for recipe in recipes %}
+                <tr>
+                    <td> {{ recipe["title"] }}</td>
+                    <td> {{ recipe["update_date"] }}</td>
+                    <td><a href="/recipe_detail/{{recipe['id']}}"><button>詳細</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+{% endblock %}
+
+
+
+

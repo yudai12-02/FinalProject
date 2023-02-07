@@ -1,0 +1,44 @@
+{% extends "login_base.html" %}
+{% block main %}
+
+<h1>マイページ</h1>
+
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li　style="list-style: none;">{{ message }}</li><br>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+        <table>
+            <thead>
+                <tr>
+                    <th>料理</th>
+                    <th>説明</th>
+                    <th>リクエストした人</th>
+                    <th>登録日</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for request in requests %}
+                <tr>
+                    <td> {{ request["title"] }}</td>
+                    <td> {{ request["detail"] }}</td>
+                    <td> {{ request["send_user"] }}</td>
+                    <td> {{ request["create_date"] }}</td>
+                <!--出来たら時間も-->
+                </tr>
+                {% endfor %}
+            </tbody>
+
+
+         </table>
+
+    <button value="Refresh Page" class="btn-anime"
+    onClick="window.location.reload();"><span>最新のリクエストを表示</span></button>
+
+{% endblock %}
